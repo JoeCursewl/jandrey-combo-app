@@ -37,10 +37,11 @@ Clona este repositorio: Clona este repositorio en tu ordenador.
 Navega hasta el directorio de la aplicación: Abre una terminal y navega hasta el directorio de la aplicación.
 
 Ejecuta la aplicación: Ejecuta el siguiente comando:
-expo start
-
-## Si quieres poder ver la aplicación desde tu teléfono móvil puedes descargar la aplicación de Expo Go y escanear el código que devuelve al ejecutar la aplicación
 
 ```
 npm run dev or expo start
 ```
+
+## Si quieres poder ver la aplicación desde tu teléfono móvil puedes descargar la aplicación de Expo Go y escanear el código que devuelve al ejecutar la aplicación
+
+
