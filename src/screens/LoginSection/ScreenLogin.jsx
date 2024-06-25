@@ -6,6 +6,7 @@ import {
   Image,
   ImageBackground,
   Alert,
+  ScrollView,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { stylesLogin } from "./stylesLogin";
@@ -20,15 +21,8 @@ export default function ScreenLogin() {
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-  // NAVEGADOR DEPENDIENDO LA CONDICIÓN
-  // navigatin("route to navigate")
-
   const useNav = useNavigate();
 
-
-  // const handleLogin = () => {
-  //   useNav("/dashboard");
-  // }
   const handleLogin = async () => {
     const { error, state } = await brdLoginApp(email, password, setLoading);
     if (error) return Alert.alert("BRD | Error", error);
@@ -40,9 +34,11 @@ export default function ScreenLogin() {
   };
 
   return (
-    <Animatable.View animation={"slideInUp"} duration={800} style={{ backgroundColor: '#000'}}>
+    <Animatable.View animation={"slideInUp"} duration={500} style={{ backgroundColor: '#000'}}>
+
       <View>
         <ImageBackground source={require("../../../assets/benee_god_3.png")}>
+        <ScrollView>
           <View style={stylesLogin.logoApp}>
             <Image
               source={require("../../../assets/logo_recortado.png")}
@@ -60,7 +56,7 @@ export default function ScreenLogin() {
                 <Image
                   source={require("../../../assets/svgs-login/email-img.png")}
                   style={stylesLogin.imagesInput}
-                />
+                  />
                 <Text style={stylesLogin.colorWhite}>Correo Electrónico</Text>
               </View>
 
@@ -72,7 +68,7 @@ export default function ScreenLogin() {
                 cursorColor={"white"}
                 selectionColor={"white"}
                 placeholderTextColor={"white"}
-              />
+                />
             </View>
 
             <View>
@@ -80,7 +76,7 @@ export default function ScreenLogin() {
                 <Image
                   source={require("../../../assets/svgs-login/password-img.png")}
                   style={stylesLogin.imagesInput}
-                />
+                  />
                 <Text style={stylesLogin.colorWhite}>Contraseña</Text>
               </View>
 
@@ -88,10 +84,10 @@ export default function ScreenLogin() {
             </View>
 
             {loading !== true ? (
-                <Button title="INICIAR SESION" color={"#623273"} onPress={() => {
-                  handleLogin()
-                }}/>
-              ) : (
+              <Button title="INICIAR SESION" color={"#623273"} onPress={() => {
+                handleLogin()
+              }}/>
+            ) : (
                 <ActivityIndicator size={"large"} color={"#AA4ACD"} />
               )}
 
@@ -106,7 +102,9 @@ export default function ScreenLogin() {
               </Link>
             </View>
           </View>
+        </ScrollView> 
         </ImageBackground>
+
       </View>
     </Animatable.View>
   );

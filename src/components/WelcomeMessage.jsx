@@ -10,7 +10,7 @@ export default function WelcomeMessage({ stylesDash, username }) {
             <View style={stylesDash.welcomeMsg}>
                 <Image source={image} style={stylesDash.dashSvgs}/>
                 <Text style={stylesDash.fontBig}>
-                    Bienvenido <SpecialText>{username}</SpecialText>, estamos listos!
+                    Bienvenido <SpecialText>{username !== undefined ? username : '---'}</SpecialText>, estamos listos!
                 </Text>
             </View>
         </View>

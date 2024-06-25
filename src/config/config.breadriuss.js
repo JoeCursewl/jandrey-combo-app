@@ -33,7 +33,10 @@ export const ListItemsAppBar = [
 
 export const API_URL = 'https://facegym.breadriuss.store/';
 
+
 export const DEFAULT_USER_BRD = 'D'
 
 export const date = new Date();
+
+export const date_to_update = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 export const API_ERF_BRD = 'sHJSDkl./4d#$dplofiwqWDFlwPODYSGsznfhdkl'

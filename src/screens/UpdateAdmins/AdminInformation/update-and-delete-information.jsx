@@ -22,6 +22,9 @@ import {
   import { date } from "../../../config/config.breadriuss.js";
   import { useParams } from "react-router-native";
   import ArrowBack from "../../../components/arrow-back.jsx";
+  import { getInformationById } from "../../../services/adminManageInformation/get-information.js";
+import { updateInformation } from "../../../services/adminManageInformation/update-information.js";
+import { deleteInformation } from "../../../services/adminManageInformation/delete-information.js";
   
   export default function UpdateAndDeleteInformation() {
     const { setAuthToken, authToken, setInfoUser, infoUser } = useGlobalState();
@@ -29,6 +32,7 @@ import {
     // States of the component
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+
     const [name_contact, setNameContact] = useState("");
     const [description_contact, setDescriptionContact] = useState("");
     const [email_contact, setEmailContact] = useState("");
@@ -41,7 +45,70 @@ import {
       setVisible(!visible);
     };
 
-    console.log(id_info)
+    const handleUpdateInformation = async () => {
+        const { error, result } = await updateInformation(authToken, setLoading, name_contact, description_contact, email_contact, phones_contact, status_contact, id_info)
+
+        if (error) {
+          Alert.alert("FACEGYM | Error", error);
+        }
+
+        if (result) {
+          Alert.alert("FACEGYM | Éxito", result);
+          navigate("/edit/information");
+        }
+      }
+
+
+      const deleteInfo = async () => {
+        Alert.alert(
+          "FACEGYM | Eliminar información",
+          "¿Estás seguro de eliminar esta información?",
+          [
+            {
+              text: "Cancelar",
+              onPress: () => {},
+              style: "cancel",
+            },
+            {
+              text: "Eliminar",
+              onPress: async () => {
+                const { error, result } = await deleteInformation(authToken, setLoading, id_info);
+                
+                if (error) {
+                  Alert.alert("FACEGYM | Error", error);
+                }
+
+                if (result) {
+                  Alert.alert("FACEGYM | Éxito", result);
+                  navigate("/edit/information");
+                }
+              },
+            },
+          ],
+          { cancelable: false }
+        )
+      }
+
+
+    const getInfoId = async () => {
+      const { error, result } = await getInformationById(authToken, setLoading, id_info);
+
+      if (error) {
+        Alert.alert("FACEGYM | Error", error);
+      }
+
+      if (result) {
+        setNameContact(result.name_contact);
+        setDescriptionContact(result.description_contact);
+        setEmailContact(result.email_contact);
+        setPhonesContact(result.phones_contact);
+        setStatusContact(result.status_contact);
+      }
+    }
+
+    useEffect(() => {
+      getInfoId();
+    }, []);
   
   
     const verify = async () => {
@@ -173,6 +240,7 @@ import {
                 <TextInput
                   style={stylePosts.input}
                   onChangeText={(text) => setNameContact(text)}
+                  value={name_contact}
                 />
               </View>
   
@@ -184,6 +252,7 @@ import {
                   style={stylePosts.contentInput}
                   multiline={true}
                   onChangeText={(text) => setDescriptionContact(text)}
+                  value={description_contact}
                 />
               </View>
   
@@ -194,6 +263,7 @@ import {
                 <TextInput
                   style={stylePosts.input}
                   onChangeText={(text) => setEmailContact(text)}
+                  value={email_contact}
                 />
               </View>
   
@@ -204,6 +274,7 @@ import {
                 <TextInput
                   style={stylePosts.input}
                   onChangeText={(text) => setPhonesContact(text)}
+                  value={phones_contact}
                 />
               </View>
   
@@ -229,7 +300,7 @@ import {
               {loading !== true ? (
                 <>
                     <TouchableHighlight
-                    onPress={() => console.log("arroz")}
+                    onPress={() => handleUpdateInformation()}
                     underlayColor={"#bd87da3a"}
                     style={stylePosts.buttonSumbit}
                     activeOpacity={0.6}
@@ -240,7 +311,7 @@ import {
                     </TouchableHighlight>
 
                     <TouchableHighlight
-                    onPress={() => console.log("arroz")}
+                    onPress={() => deleteInfo()}
                     underlayColor={"#bd87da3a"}
                     style={stylePosts.buttonSumbitDelete}
                     activeOpacity={0.6}

@@ -48,7 +48,6 @@ import {
     const nextPage = () => {
       if (page < info?.length) {
         setPage(page + 1);
-        console.log(info);
       }
     };
   

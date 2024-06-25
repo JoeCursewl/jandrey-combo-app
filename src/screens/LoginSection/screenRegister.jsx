@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   TouchableHighlight,
   TextComponent,
+  ScrollView
 } from "react-native";
 import { stylesRegister } from "./stylesRegister";
 import { useNavigate, Link } from "react-router-native";
@@ -52,12 +53,14 @@ export default function ScreenRegister() {
   return (
     <Animatable.View animation={"slideInUp"} duration={600}>
       <View>
+        <ScrollView>
+
         <ImageBackground source={require("../../../assets/benee_god.png")}>
           <View style={stylesRegister.logoApp}>
             <Image
               source={require("../../../assets/logo_recortado.png")}
               style={stylesRegister.imageStyle}
-            />
+              />
           </View>
 
           <View style={stylesRegister.containerLogin}>
@@ -72,7 +75,7 @@ export default function ScreenRegister() {
                 style={stylesRegister.appInputs}
                 onChangeText={(text) => setName(text)}
                 value={name}
-              />
+                />
             </View>
 
             <View style={stylesRegister.everyInput}>
@@ -82,7 +85,7 @@ export default function ScreenRegister() {
                 style={stylesRegister.appInputs}
                 onChangeText={(text) => setLastname(text)}
                 value={lastname}
-              />
+                />
             </View>
 
             <View style={stylesRegister.everyInput}>
@@ -92,7 +95,7 @@ export default function ScreenRegister() {
                 style={stylesRegister.appInputs}
                 onChangeText={(text) => setEmail(text)}
                 value={email}
-              />
+                />
             </View>
 
             <View style={stylesRegister.everyInput}>
@@ -102,7 +105,7 @@ export default function ScreenRegister() {
                 style={stylesRegister.appInputs}
                 onChangeText={text => setPassword(text)}
                 value={password}
-              />
+                />
             </View>
 
             <View style={stylesRegister.everyInput}>
@@ -114,7 +117,7 @@ export default function ScreenRegister() {
                 style={stylesRegister.appInputs}
                 onChangeText={text => setPasswordComp(text)}
                 value={passwordComp}
-              />
+                />
             </View>
 
             <View style={stylesRegister.buttonRegister}>
@@ -127,7 +130,7 @@ export default function ScreenRegister() {
               )}
 
               <View style={stylesRegister.adminLogin}>
-                <Link style={stylesRegister.adminLink} to={"/"}>
+                <Link style={stylesRegister.adminLink} to={"/login"}>
                   <Text style={{ color: "#bbb" }}>
                     ¿Ya tienes cuenta?{" "}
                     <TextWithColor color={"#813D99"}>
@@ -139,6 +142,7 @@ export default function ScreenRegister() {
             </View>
           </View>
         </ImageBackground>
+        </ScrollView>
       </View>
     </Animatable.View>
   );

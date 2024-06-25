@@ -50,7 +50,7 @@ export const stylesLogin = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 40
+    paddingVertical: 55
   },
   adminLogin: {
     alignItems: 'center',

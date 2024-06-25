@@ -31,7 +31,7 @@ export default function AllApp() {
         <Route path="/login" element={<ScreenLogin />}/>
         <Route path="/login-admin" element={<ScreenRegister />}/>
         
-        <Route path="/register/" element={<RouterAdmin />} />
+        <Route path="/register" element={<RouterAdmin />} />
 
         <Route path="/register/new-post" element={<RegisterPosts />} />
         <Route path="/register/new-package" element={<RegisterPackages />} />
@@ -56,8 +56,12 @@ export default function AllApp() {
         <Route path="/information/:id_info" element={<UpdateAndDeleteInformation />} />
 
         <Route path="/dashboard" element={
-              <DashboardApp /> }/>
-        <Route path="*" element={<Navigate to={"/dashboard"}/>}/>
+              <DashboardApp /> }
+        />
+       <Route path="*" element={
+          <Navigate to={"/dashboard"}/>}
+        >
+        </Route>
       </Routes>
     </View>
   );
@@ -66,7 +70,8 @@ export default function AllApp() {
 const styles = StyleSheet.create({
   container: {
     minHeight: 100,
-    marginTop: Constants.statusBarHeight,
+    // marginTop: Constants.statusBarHeight,
+    marginTop: 0,
     backgroundColor: "#000"
   },
   text: {
