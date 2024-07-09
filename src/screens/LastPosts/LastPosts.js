@@ -37,6 +37,6 @@ export const stylesPosts = StyleSheet.create({
     noPosts: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: '20%',
+        height: '25%',
     }
 })

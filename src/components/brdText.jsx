@@ -16,9 +16,9 @@ export const SpecialText = ({ children }) => {
     )
 }
 
-export const TextWithColor = ({ children, color, fontSize, textAlign }) => {
+export const TextWithColor = ({ children, color, fontSize, textAlign, style }) => {
     return (
-        <Text style={{ color: color, fontSize: fontSize, textAlign: textAlign }}>
+        <Text style={{ color: color, fontSize: fontSize, textAlign: textAlign, ...style }}>
             {children}
         </Text>
     )

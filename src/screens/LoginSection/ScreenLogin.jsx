@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Alert,
   ScrollView,
+  TouchableHighlight
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { stylesLogin } from "./stylesLogin";
@@ -15,6 +16,7 @@ import { useNavigate, Link } from "react-router-native";
 import brdLoginApp from "../../services/brdLoginApp";
 import { TextWithColor } from "../../components/brdText";
 import { ActivityIndicator } from "react-native";
+import { ColorsButton } from "../../static/ColorsButton";
 
 export default function ScreenLogin() {
   const [email, setEmail] = React.useState("");
@@ -34,24 +36,18 @@ export default function ScreenLogin() {
   };
 
   return (
-    <Animatable.View animation={"slideInUp"} duration={500} style={{ backgroundColor: '#000'}}>
+    <Animatable.View animation={"fadeIn"} duration={200} style={{ backgroundColor: ColorsButton.colorBackground.color }}>
 
       <View>
-        <ImageBackground source={require("../../../assets/benee_god_3.png")}>
+        <ImageBackground source={require("../../../assets/bg-login.png")}>
         <ScrollView>
-          <View style={stylesLogin.logoApp}>
-            <Image
-              source={require("../../../assets/logo_recortado.png")}
-              style={stylesLogin.imageStyle}
-            />
-          </View>
 
           <View style={stylesLogin.containerLogin}>
             <View style={stylesLogin.flexCenter}>
-              <Text style={stylesLogin.fontMain}>Iniciar Sesión</Text>
+              <Image source={require("../../../assets/svgs-login/logo-gym.png")} style={{ width: 100, height: 100}}/>
             </View>
 
-            <View>
+            <View style={{ gap: 12 }}>
               <View style={stylesLogin.titleLg}>
                 <Image
                   source={require("../../../assets/svgs-login/email-img.png")}
@@ -65,44 +61,49 @@ export default function ScreenLogin() {
                 maxLength={40}
                 onChangeText={(text) => setEmail(text)}
                 style={stylesLogin.appInputs}
-                cursorColor={"white"}
-                selectionColor={"white"}
                 placeholderTextColor={"white"}
                 />
             </View>
 
-            <View>
+            <View style={{ gap: 12 }}>
               <View style={stylesLogin.titleLg}>
+
                 <Image
                   source={require("../../../assets/svgs-login/password-img.png")}
                   style={stylesLogin.imagesInput}
                   />
                 <Text style={stylesLogin.colorWhite}>Contraseña</Text>
+
               </View>
 
               <TextInput style={stylesLogin.appInputs} secureTextEntry onChangeText={(text) => setPassword(text)}/>
             </View>
 
             {loading !== true ? (
-              <Button title="INICIAR SESION" color={"#623273"} onPress={() => {
-                handleLogin()
-              }}/>
+              <TouchableHighlight onPress={() => handleLogin()} style={stylesLogin.appButton} underlayColor={ColorsButton.colorBackground.color}>
+                <View>
+                  <TextWithColor color={ColorsButton.colorNegative.color}>Iniciar Sesion</TextWithColor>
+                </View>
+              </TouchableHighlight>
             ) : (
-                <ActivityIndicator size={"large"} color={"#AA4ACD"} />
+                <ActivityIndicator size={"large"} color={ColorsButton.colorLetter.color} />
               )}
 
             <View style={stylesLogin.adminLogin}>
-              <Link style={stylesLogin.adminLink} to={"/login-admin"}>
-                <Text style={{ color: "#bbb" }}>
+
+              <Link style={stylesLogin.adminLink} to={"/login-admin"} underlayColor={ColorsButton.colorBackground.color}>
+                <Text style={{ color: ColorsButton.colorLetter.color }}>
                   ¿No tienes cuenta?{" "}
-                  <TextWithColor color={"#813D99"}>
+                  <TextWithColor color={ColorsButton.colorPress.color}>
                     Registrate aquí!
                   </TextWithColor>
                 </Text>
               </Link>
+
             </View>
           </View>
         </ScrollView> 
+
         </ImageBackground>
 
       </View>

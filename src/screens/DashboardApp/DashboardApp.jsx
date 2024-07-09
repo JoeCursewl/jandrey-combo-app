@@ -44,31 +44,6 @@ export default function DashboardApp() {
       <ImageBackground>
         <AppBar />
 
-        <View style={stylesDash.modesDash}>
-
-          <View style={{ gap: 10 }}>
-            <ButtonModes stylesDash={stylesDash} name={"Paquetes"} imageRoute={require("../../../assets/svgs-login/packaging-img.png")} path={"/packaging"}/>
-            
-            <ButtonModes stylesDash={stylesDash} name={"Novedades"} imageRoute={require("../../../assets/svgs-login/novedades-img.png")} path={"/news"}/>
-
-            {infoUser?._role === 'A' ? (
-              <ButtonModes stylesDash={stylesDash} name={"Registrar"} imageRoute={require("../../../assets/svgs-login/register-img.png")} path={"/register"}/>
-            )
-            : null}
-          </View>
-
-          <View style={{ gap: 10 }}>
-            <ButtonModes stylesDash={stylesDash} name={"Traineers"} imageRoute={require("../../../assets/svgs-login/entrenadores-img.png")} path={"/trainers"}/>
-            
-            <ButtonModes stylesDash={stylesDash} name={"Contacto"} imageRoute={require("../../../assets/svgs-login/contacto-img.png")} path={"/contacts"}/>
-            
-            {infoUser?._role === 'A' ? (
-              <ButtonModes stylesDash={stylesDash} name={"Editar"} imageRoute={require("../../../assets/svgs-login/contacto-img.png")} path={"/update"}/>
-            )
-            : null}
-          </View>
-
-        </View>
 
         <WelcomeMessage stylesDash={stylesDash} username={infoUser?.name} />
       

@@ -35,7 +35,7 @@ export const updateInformation = async (authToken,
                 description_contact: description_contact.trim(),
                 email_contact: email_contact.trim(),
                 phones_contact: phones_contact.trim(),
-                stauts_contact: status_contact.trim(),
+                status_contact: status_contact.trim(),
                 updated_at: date_to_update
             })
         })

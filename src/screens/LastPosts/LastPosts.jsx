@@ -29,7 +29,7 @@ export default function LastPosts({ infoUser }) {
       style={{
         paddingHorizontal: 25,
         paddingTop: 0,
-        height: infoUser._role === 'A' ? "62%" : "70%",
+        height: "auto",
         paddingBottom: 20,
       }}
     >

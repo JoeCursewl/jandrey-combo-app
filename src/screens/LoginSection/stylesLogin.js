@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
 import Constants from 'expo-constants'
+import { ColorsButton } from "../../static/ColorsButton";
 
 export const stylesLogin = StyleSheet.create({
   colorWhite: {
-    color: "white",
+    color: "#0D1C4B",
     fontSize: 16,
   },
   fontMain: {
-    color: '#fdfdfd',
+    color: '#0D1C4B',
     fontSize: 18,
   },
   flexCenter: {
@@ -16,23 +17,31 @@ export const stylesLogin = StyleSheet.create({
     alignItems: "center",
   },
   appInputs: {
-    color: '#fdfdfd',
+    color: '#0D1C4B',
     padding: 10,
-    borderBottomColor: '#632879',
-    borderBottomWidth: 1,
-    backgroundColor: 'transparent',
+    borderColor: '#182C6A',
+    borderWidth: 0.5,
+    backgroundColor: ColorsButton.colorBackground.color,
+    borderRadius: 20
+  },
+  appButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#182C6A",
+    borderRadius: 12,
+    padding: 10,
   },
   containerLogin: {
-    marginTop: 80,
-    marginBottom: 290,
     padding: 30,
     display: 'flex',
     justifyContent: 'center',
+    width: '100%',
+    height: 850,
     gap: 50,
   },
   imagesInput: {
-    width: 12,
-    height: 12,
+    width: 15,
+    height: 15,
     resizeMode: 'stretch',
   },
   titleLg: {
@@ -40,7 +49,7 @@ export const stylesLogin = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    gap: 8,
+    gap: 5,
   },
   imageStyle: {
     width: 50,
@@ -50,15 +59,13 @@ export const stylesLogin = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 55
+    paddingTop: 55
   },
   adminLogin: {
     alignItems: 'center',
     justifyContent: 'center'    
   },
   adminLink: {
-    borderColor: '#632879',
-    borderWidth: 1,
     padding: 12,
     borderRadius: 12,
   }

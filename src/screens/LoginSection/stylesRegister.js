@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
 import Constants from 'expo-constants'
+import { ColorsButton } from "../../static/ColorsButton";
 
 export const stylesRegister = StyleSheet.create({
   colorWhite: {
-    color: "white",
+    color: ColorsButton.colorLetter.color,
     fontSize: 16,
   },
   fontMain: {
@@ -16,18 +17,21 @@ export const stylesRegister = StyleSheet.create({
     alignItems: "center",
   },
   containerLogin: {
-    marginTop: 1,
-    marginBottom: 120,
     padding: 30,
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     gap: 20,
+    height: 950,
+    width: '100%'
   },
   appInputs: {
-    borderColor: '#949494',
-    borderBottomWidth: 2,
-    color: '#ccc',
-    padding: 2
+    color: '#0D1C4B',
+    padding: 10,
+    borderColor: '#182C6A',
+    borderWidth: 0.5,
+    backgroundColor: ColorsButton.colorBackground.color,
+    borderRadius: 20
   },
   imagesInput: {
     width: 12,
@@ -49,17 +53,17 @@ export const stylesRegister = StyleSheet.create({
     justifyContent: 'center'    
   },
   adminLink: {
-    borderColor: '#632879',
-    borderWidth: 1,
     padding: 12,
     borderRadius: 12,
   },
   everyInput: {
-    gap: 3
+    gap: 12,
+    width: '100%'
   },
   buttonRegister: {
     paddingTop: 30,
-    gap: 20
+    gap: 20,
+    width: '100%'
   }
 });
 

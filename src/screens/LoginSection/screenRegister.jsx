@@ -21,6 +21,8 @@ import * as Animatable from "react-native-animatable";
 import { setToken } from "../../services/asyncStorage/setAsyncStorage";
 import { useGlobalState } from "../../utils/zustand/useGlobalState";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ColorsButton } from "../../static/ColorsButton";
+import { stylesLogin } from "./stylesLogin";
 
 export default function ScreenRegister() {
   const [name, setName] = useState("");
@@ -50,22 +52,22 @@ export default function ScreenRegister() {
   };
 
 
-  return (
-    <Animatable.View animation={"slideInUp"} duration={600}>
+  return ( 
+    <Animatable.View animation={"shake"} duration={200}>
       <View>
         <ScrollView>
 
-        <ImageBackground source={require("../../../assets/benee_god.png")}>
-          <View style={stylesRegister.logoApp}>
-            <Image
-              source={require("../../../assets/logo_recortado.png")}
-              style={stylesRegister.imageStyle}
-              />
-          </View>
+        <ImageBackground source={require("../../../assets/bg-login.png")}>
+
 
           <View style={stylesRegister.containerLogin}>
+
+            <View style={stylesLogin.flexCenter}>
+              <Image source={require("../../../assets/svgs-login/logo-gym.png")} style={{ width: 100, height: 100}}/>
+            </View>
+
             <View style={stylesRegister.flexCenter}>
-              <Text style={stylesRegister.fontMain}>Registrate abajo 👇🏻</Text>
+              <Text style={{ color: ColorsButton.colorLetter.color, fontSize: 18 }}>Registrate abajo 👇🏻</Text>
             </View>
 
             <View style={stylesRegister.everyInput}>
@@ -122,24 +124,29 @@ export default function ScreenRegister() {
 
             <View style={stylesRegister.buttonRegister}>
               {loading !== true ? (
-                <Button title="registrarme" color={"#623273"} onPress={() => {
-                  handleRegister()
-                }}/>
+                <TouchableHighlight onPress={() => handleRegister()} style={stylesLogin.appButton} underlayColor={ColorsButton.colorBackground.color}>
+                <View>
+                  <TextWithColor color={ColorsButton.colorNegative.color}>Registrame</TextWithColor>
+                </View>
+              </TouchableHighlight>
               ) : (
                 <ActivityIndicator size={"large"} color={"#AA4ACD"} />
               )}
 
               <View style={stylesRegister.adminLogin}>
-                <Link style={stylesRegister.adminLink} to={"/login"}>
-                  <Text style={{ color: "#bbb" }}>
+
+                <Link style={stylesRegister.adminLink} to={"/login"} underlayColor={ColorsButton.colorBackground.color}>
+                  <Text style={{ color: ColorsButton.colorLetter.color }}>
                     ¿Ya tienes cuenta?{" "}
-                    <TextWithColor color={"#813D99"}>
+                    <TextWithColor color={ColorsButton.colorPress.color}>
                       Inicia sesión aquí!
                     </TextWithColor>
                   </Text>
                 </Link>
+                
               </View>
             </View>
+
           </View>
         </ImageBackground>
         </ScrollView>

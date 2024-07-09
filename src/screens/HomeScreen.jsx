@@ -22,11 +22,19 @@ import UpdateTrainers from "./UpdateAdmins/AdminTrainers/update-trainers.jsx";
 import UpdateAndDeleteTrainers from "./UpdateAdmins/AdminTrainers/update-and-delete-trainers.jsx";
 import UpdateInformation from "./UpdateAdmins/AdminInformation/update-information.jsx";
 import UpdateAndDeleteInformation from "./UpdateAdmins/AdminInformation/update-and-delete-information.jsx";
+import { MenuDashboard } from "./DashboardApp/MenuDashboard.jsx";
+import { MenuPDF } from "./DashboardApp/MenuPdf.jsx";
 
 export default function AllApp() {
   return (
     <View style={styles.container}>
       <Routes>
+
+        <Route path="/menu" element={<MenuDashboard
+         />}/>
+
+         <Route path="/menu-pdf" element={<MenuPDF/>}/>
+
 
         <Route path="/login" element={<ScreenLogin />}/>
         <Route path="/login-admin" element={<ScreenRegister />}/>
@@ -70,8 +78,8 @@ export default function AllApp() {
 const styles = StyleSheet.create({
   container: {
     minHeight: 100,
-    // marginTop: Constants.statusBarHeight,
-    marginTop: 0,
+    marginTop: Constants.statusBarHeight,
+    // marginTop: 0,
     backgroundColor: "#000"
   },
   text: {

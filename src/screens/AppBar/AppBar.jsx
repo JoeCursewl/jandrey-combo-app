@@ -46,16 +46,23 @@ export default function AppBar() {
             source={require("../../../assets/svgs-login/date-img.png")}
             style={styleAppBar.imgDate}
           />
+
           <Text style={styleAppBar.textDate}>
             {date.toLocaleDateString("es-ES")}
           </Text>
         </View>
       </View>
 
-      <View>
+      <View style={{ flexDirection: "row", gap: 10 }}>
+
         <TouchableHighlight onPress={() => alertDialog()}>
           <Image source={require("../../../assets/svgs-login/logout-img.png")} style={{ width: 20, height: 20 }}/>
         </TouchableHighlight>
+
+        <Link to={"/menu"}>
+          <Image source={require("../../../assets/svgs-login/h-menu.png")} style={{ width: 20, height: 20 }}/>
+        </Link>
+
       </View>
 
     </View>
