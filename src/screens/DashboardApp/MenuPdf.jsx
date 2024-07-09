@@ -27,6 +27,7 @@ export const MenuPDF = () => {
 
   const verify = async () => {
     const token = await getToken('AuthToken');
+    setAuthToken(token);
     const { error, data } = await verifyToken(token);
 
     if (error) {
@@ -98,9 +99,11 @@ export const MenuPDF = () => {
 
     await shareAsync(file.uri)
   }
+  useEffect(() => {
+    verify();
+  }, [])
 
   useEffect(() => {
-      verify();
       getTrainers();
   }, [])
 
