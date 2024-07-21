@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { ColorsButton } from "../../static/ColorsButton";
 
 const stylesDash = StyleSheet.create({
   container: {
-    backgroundColor: "#121212",
-    height: "100%",
+    backgroundColor: "#120b6d",
+    width: "100%",
   },
   imageDash: {
     width: 100,
@@ -18,9 +19,11 @@ const stylesDash = StyleSheet.create({
     fontSize: 15,
   },
   dashContainer: {
-    paddingHorizontal: 25,
-    paddingTop: 8,
-    paddingBottom: 20,
+    padding: 20,
+    width: "100%",
+    backgroundColor: "#4742af",
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
   },
   modesDash: {
     paddingHorizontal: 20,
@@ -52,7 +55,7 @@ const stylesDash = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row-reverse",
     gap: 10,
-    width: 155,
+    width: "100%",
     height: 40,
     borderRadius: 15,
     padding: 8,
@@ -62,6 +65,19 @@ const stylesDash = StyleSheet.create({
     width: 20,
     height: 20,
   },
+  littleButton: {
+    fontFamily: "Poppins",
+    fontSize: 12,
+    color: ColorsButton.colorEnergy.color,
+    borderWidth: 0.5,
+    borderColor: ColorsButton.colorEnergy.color,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+  }
 });
 
 export default stylesDash;

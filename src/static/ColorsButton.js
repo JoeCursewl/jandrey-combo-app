@@ -15,5 +15,17 @@ export const ColorsButton = StyleSheet.create({
     },
     colorPress: {
         color: '#698DFF'
+    },
+    colorPrimaryApp: {
+        color: '#6768ef'
+    },
+    colorTextApp: {
+        color: '#626672'
+    },
+    colorWhiteApp: {
+        color: "#fefffe"
+    },
+    colorEnergy: {
+        color: "#dc5e25"
     }
 })

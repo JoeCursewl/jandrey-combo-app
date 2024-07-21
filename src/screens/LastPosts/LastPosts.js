@@ -1,42 +1,39 @@
 import { StyleSheet } from "react-native"
+import { ColorsButton } from "../../static/ColorsButton"
 
 export const stylesPosts = StyleSheet.create({
-    containerMain: {
-        paddingHorizontal: 25,
-        paddingTop: 0,
-        height: '60%',
-        paddingBottom: 20
-    },
-    textPost: {
-        color: '#fdfdfd',
-    },
-    titlePost: {
-        flexDirection: 'row',
-        gap: 8,
-        marginBottom: 22
-    },
-    sizeImage: {
-        width: 22,
-        height: 22
+    fontPost: {
+        color: ColorsButton.colorEnergy.color,
+        fontFamily: 'Poppins',
+        width: 100
     },
     containerPost: {
-        borderWidth: 1,
-        borderColor: '#393939',
-        borderRadius: 8,
-        marginBottom: 15
-    },
-    namePost: {
-        borderBottomColor: '#393939',
-        borderBottomWidth: 1,
-        paddingHorizontal: 8,
-        paddingVertical: 10,
+        backgroundColor: ColorsButton.colorBackground.color,
+        gap: 10,
     },
     descriptionPost: {
-        padding: 10
-    }, 
-    noPosts: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '25%',
+        fontFamily: 'Poppins',
+        width: "100%",
+        maxHeight: 55,
+        color: ColorsButton.colorTextApp.color,
+    },
+    imgPost: {
+        width: 20,
+        height: 20
+    },
+    morePost: {
+        textAlign: "center",
+        color: ColorsButton.colorEnergy.color,
+        fontFamily: 'Poppins',
+        fontSize: 12
+    },
+    titlePosts: {
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        color: ColorsButton.colorTextApp.color
+    },
+    imgLastPosts: {
+        width: 22,
+        height: 22
     }
 })

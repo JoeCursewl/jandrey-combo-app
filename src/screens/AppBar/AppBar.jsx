@@ -39,7 +39,7 @@ export default function AppBar() {
     <View style={styleAppBar.appBar}>
 
       <View>
-        <Text style={styleAppBar.textWhite}>FORCEGYM</Text>
+        <Text style={styleAppBar.textDark}>FORCEGYM</Text>
 
         <View style={styleAppBar.appBarDate}>
           <Image
@@ -56,11 +56,11 @@ export default function AppBar() {
       <View style={{ flexDirection: "row", gap: 10 }}>
 
         <TouchableHighlight onPress={() => alertDialog()}>
-          <Image source={require("../../../assets/svgs-login/logout-img.png")} style={{ width: 20, height: 20 }}/>
+          <Image source={require("../../../assets/svgs-login/logout-img.png")} style={{ width: 30, height: 30 }}/>
         </TouchableHighlight>
 
         <Link to={"/menu"}>
-          <Image source={require("../../../assets/svgs-login/h-menu.png")} style={{ width: 20, height: 20 }}/>
+          <Image source={require("../../../assets/svgs-login/h-menu.png")} style={{ width: 30, height: 30 }}/>
         </Link>
 
       </View>

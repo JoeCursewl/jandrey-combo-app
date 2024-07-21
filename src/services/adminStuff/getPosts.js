@@ -1,8 +1,8 @@
 import { API_URL, API_ERF_BRD } from "../../config/config.breadriuss";
-export const getPosts = async (setLoading) => {
+export const getPosts = async (setLoading, page) => {
   setLoading(true)
   try {
-    const response = await global.fetch(API_URL + "admins/getposts", {
+    const response = await global.fetch(API_URL + `admins/getposts/feed/${page}`, {
       method: "GET",
       headers: {
         Authorization: API_ERF_BRD,

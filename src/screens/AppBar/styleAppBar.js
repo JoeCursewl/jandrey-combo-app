@@ -6,15 +6,17 @@ export const styleAppBar = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 20,
-        borderBottomColor: '#493651',
-        borderBottomWidth: 1,
+        backgroundColor: '#120b6d',
     },
     textWhite: {
         color: 'white',
     },
+    textDark: {
+        color: '#eff3f6',
+    },
     imgDate: {
-        width: 12,
-        height: 12
+        width: 18,
+        height: 18
     },
     appBarDate: {
         flexDirection: 'row',
@@ -22,8 +24,8 @@ export const styleAppBar = StyleSheet.create({
         gap: 3
     },
     textDate: {
-        fontSize: 10,
-        color: '#D58BF3'
+        fontSize: 12,
+        color: '#eff3f6'
     }
     
 })

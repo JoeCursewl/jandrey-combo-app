@@ -78,7 +78,7 @@ export default function AllApp() {
 const styles = StyleSheet.create({
   container: {
     minHeight: 100,
-    // marginTop: Constants.statusBarHeight,
+    marginTop: Constants.statusBarHeight,
     backgroundColor: "#000"
   },
   text: {
