@@ -64,7 +64,7 @@ export const MenuDashboard = () => {
 
         <View style={styleMenu.contMenu}>
 
-            <Link to="/packages" style={styleMenu.link}>
+            <Link to="/register/new-post" style={styleMenu.link}>
                 <View style={styleMenu.apartados}>
                     <Image source={require("../../../assets/svgs-login/posts-img.png")} style={styleMenu.img}/>
                     <TextWithColor color={"#E5E3E4"} fontSize={15}>Publicaciones</TextWithColor>

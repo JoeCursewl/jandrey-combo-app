@@ -24,6 +24,8 @@ import UpdateInformation from "./UpdateAdmins/AdminInformation/update-informatio
 import UpdateAndDeleteInformation from "./UpdateAdmins/AdminInformation/update-and-delete-information.jsx";
 import { MenuDashboard } from "./DashboardApp/MenuDashboard.jsx";
 import { MenuPDF } from "./DashboardApp/MenuPdf.jsx";
+import ShowPosts from "./LastPosts/ShowPosts.jsx";
+import GetPostId from "./LastPosts/GetPostId.jsx";
 
 export default function AllApp() {
   return (
@@ -33,43 +35,62 @@ export default function AllApp() {
         <Route path="/menu" element={<MenuDashboard
          />}/>
 
+        {/* Genera un PDF de todos los entrenadores registrados. */}
          <Route path="/menu-pdf" element={<MenuPDF/>}/>
 
-
+        {/* Rutas de inicio de sesion y registro. */}
         <Route path="/login" element={<ScreenLogin />}/>
         <Route path="/login-admin" element={<ScreenRegister />}/>
         
+
+        {/* Rutas para que el administrador pueda registrar. */}
         <Route path="/register" element={<RouterAdmin />} />
 
+        {/* Rutas para que el administrador pueda registrar por separado a cada una de las entidades de la app. */}
         <Route path="/register/new-post" element={<RegisterPosts />} />
         <Route path="/register/new-package" element={<RegisterPackages />} />
         <Route path="/register/new-trainer" element={<RegisterTrainers />} />
         <Route path="/register/new-contact" element={<RegisterInformation />} />
 
+
+        {/* Muestra todas las publiaciones que han sido registradas. */}
+        <Route path="/posts" element={<ShowPosts />} />
+        <Route path="/post/details/:id_post" element={<GetPostId />} /> 
+
+        {/* Muestra todos los paquetes que han sido registrados y así suceseivamente. */}
         <Route path="/packaging" element={<ShowPackages />} />
+
         <Route path="/trainers" element={<ShowTrainers />} />
         <Route path="/contacts" element={<ShowContact />} />
         <Route path="/update" element={<RouterAdminUpdate />} />
-
+        
+        {/* Se encarga de mostrar y editar las publicaciones. */}
         <Route path="/edit/posts" element={<UpdatePosts />} />
         <Route path="/post/:id_post" element={<UpdateAndDeletePosts />} />
 
+        {/* Se encarga de mostrar y editar los paquetes. */}
         <Route path="/edit/packages" element={<UpdatePackages />} />
         <Route path="/package/:id_package" element={<UpdateAndDeletePackages />} />
 
+        {/* Se encarga de mostrar y editar los entrenadores. */}
         <Route path="/edit/trainers" element={<UpdateTrainers />} />
         <Route path="/trainer/:id_trainer" element={<UpdateAndDeleteTrainers />} />
 
+        {/* Se encarga de mostrar y editar la información de contacto. */}
         <Route path="/edit/information" element={<UpdateInformation />} />
         <Route path="/information/:id_info" element={<UpdateAndDeleteInformation />} />
 
+        {/* La ruta principal de la aplicación el dashboard */}
         <Route path="/dashboard" element={
               <DashboardApp /> }
         />
+
+        {/* Ruta por defecto. */}
        <Route path="*" element={
           <Navigate to={"/dashboard"}/>}
         >
         </Route>
+
       </Routes>
     </View>
   );

@@ -16,7 +16,7 @@ export const getPosts = async (setLoading, page) => {
 
     const posts = await response.json();
     setLoading(false)
-    return { posts: posts };
+    return { posts: posts, likes: posts.likes  };
   } catch (error) {
     setLoading(false)
     return { error: error.message }

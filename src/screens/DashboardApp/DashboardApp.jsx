@@ -15,7 +15,7 @@ import ButtonModes from '../../components/button-modes'
 import WelcomeMessage from "../../components/WelcomeMessage";
 import { getToken } from "../../services/asyncStorage/getAsyncStorage.js";
 import { useGlobalState } from "../../utils/zustand/useGlobalState.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { verifyToken } from "../../services/verifyToken/verifyToken.js";
 import { useNavigate } from "react-router-native";
 import LastPosts from "../LastPosts/LastPosts.jsx";
@@ -28,10 +28,13 @@ import { Link } from "react-router-native";
 import { Shadow } from "react-native-shadow-2";
 
 // Importamos expo-font 
-import * as Font from 'expo-font';
+import { useFonts, loadAsync } from 'expo-font';
 export default function DashboardApp() {
   const { setAuthToken, authToken, setInfoUser, infoUser } = useGlobalState();
   const navigate = useNavigate();
+
+  // Estado de carga de las fuentes 
+  const [loadedFonts2, setLoadedFonts2] = useState(false);
 
   const verify = async () => {
     const token = await getToken('AuthToken');
@@ -55,22 +58,21 @@ export default function DashboardApp() {
     navigate(to);
   }
 
-
-  // Función para obtener custom fonts de los assets
-  const getPoppinsFont = async () => {
-    await Font.loadAsync({
-      'Poppins': require('../../../assets/fonts/Poppins-Regular.ttf'),  
-    })
+  const loadFonts = async () => {
+    await loadAsync({
+      Poppins: require('../../../assets/fonts/Poppins-Regular.ttf'),
+    }); 
   }
 
-  useEffect(() => {
-    getPoppinsFont();
-  }, [])
+  // Función para obtener custom fonts de los assets
+  const [loadedFonts] = useFonts(async () => {
+    loadFonts()
+  });
+
 
   return (
-    <ScrollView>
-
-    <View style={stylesDash.container}>
+ <ScrollView>
+  <View style={stylesDash.container}>
       <AppBar />
 
       <View style={{ gap: 10
@@ -107,7 +109,7 @@ export default function DashboardApp() {
           <View style={{ alignItems: "center", justifyContent: 'center', }}>
             
             <TouchableOpacity onPress={() => {
-              console.log("ola")
+              goToRoute('/posts');
             }}>
               <TextWithColor style={stylesDash.littleButton}>
                 Ver novedades

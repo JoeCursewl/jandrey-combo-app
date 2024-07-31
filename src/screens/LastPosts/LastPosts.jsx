@@ -25,6 +25,7 @@ export default function LastPosts({ infoUser, textComponent, imgText }) {
 
     if (error) {
       Alert.alert("FG | Error", error);
+      Alert.alert("Error | We're sorry!", "Something went wrong, please try again later.");
     }
 
     setData(posts.message);
@@ -48,12 +49,12 @@ export default function LastPosts({ infoUser, textComponent, imgText }) {
         {loading ? (
           <LoadingPostPlaceholder />
         ) : (
-
           data?.map((post) => (
             <View style={{ padding: 10, width: 200, borderRadius: 15, backgroundColor: "#F7F9FD", gap: 5 }} key={post.uuid}>
 
               <View style={{ flexDirection: "row", gap: 5, width: "100%" }}>
                 <Image source={require("../../../assets/svgs-login/date-img.png")} style={stylesPosts.imgPost}/>
+                
                 <TextWithColor style={stylesPosts.fontPost}>
                   {post.name}
                 </TextWithColor>
@@ -74,7 +75,7 @@ export default function LastPosts({ infoUser, textComponent, imgText }) {
                 <Image source={require("../../../assets/svgs-login/comment-img.png")} style={stylesPosts.imgPost}/>
               </View>
 
-              <Link underlayColor={ColorsButton.colorEnergy.color} style={{ borderWidth: 0.4, borderColor: ColorsButton.colorEnergy.color, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, textALign: "center", justifyContent: "center", alignItems: "center" }}>
+              <Link to={`/post/details/${post.uuid}`} underlayColor={ColorsButton.colorEnergy.color} style={{ borderWidth: 0.4, borderColor: ColorsButton.colorEnergy.color, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, textALign: "center", justifyContent: "center", alignItems: "center" }}>
                 <TextWithColor style={stylesPosts.morePost}>Ver más</TextWithColor>
               </Link>
 

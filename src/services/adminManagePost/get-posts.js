@@ -16,7 +16,7 @@ export const getPost = async (authToken, setLoading, uuid) => {
 
         const posts = await response.json()
         setLoading(false)
-        return { data: posts }
+        return { data: posts.message }
     } catch (error) {
         setLoading(false)
         return { error: error.message }

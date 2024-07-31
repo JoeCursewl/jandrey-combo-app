@@ -31,7 +31,7 @@ export const ListItemsAppBar = [
     }
 ];
 
-export const API_URL = 'https://facegym.breadriuss.store/';
+export const API_URL = 'https://forcegym.breadriuss.store/';
 
 
 export const DEFAULT_USER_BRD = 'D'
