@@ -21,6 +21,9 @@ import { useNavigate } from "react-router-native";
 import LastPosts from "../LastPosts/LastPosts.jsx";
 import { ColorsButton } from "../../static/ColorsButton.js";
 
+// Importamos el componente que nos muestra los últimos diez entranadores registrados
+import LastTrainers from "../Trainers/LastTrainers.jsx";
+
 // importamos el componente link para poder rotear la rutas
 import { Link } from "react-router-native"; 
 
@@ -140,7 +143,7 @@ export default function DashboardApp() {
             </View>
 
             <View>
-              <Image source={require('../../../assets/svgs-login/entrenadores-img.png')} style={{ width: 80, height: 80 }}/>
+              <Image source={require('../../../assets/svgs-login/logo-gym.png')} style={{ width: 80, height: 80 }}/>
             </View>
 
           </View>
@@ -151,29 +154,32 @@ export default function DashboardApp() {
   
               <TouchableOpacity onPress={() => {
                 goToRoute('/trainers');
-              }}>
-                  <TextWithColor style={stylesDash.littleButton}>
+              }}
+              style={stylesDash.littleButton}>
+                <Image source={require('../../../assets/svgs-login/entrenadores-button-img.png')} style={{ width: 15, height: 15 }}/>
+                  <TextWithColor style={{ color: ColorsButton.colorEnergy.color, fontSize: 12 }}>
                     Ver entrenadores
                   </TextWithColor>
               </TouchableOpacity>
 
-              <TouchableOpacity>
-                <TextWithColor style={stylesDash.littleButton}>
+              <TouchableOpacity style={stylesDash.littleButtonPurple}>
+                <Image source={require('../../../assets/svgs-login/guardados-button-img.png')} style={{ width: 15, height: 15 }}/>
+                <TextWithColor style={{ color: "#cb7df2", fontSize: 12 }}>
                   Guardados
                 </TextWithColor>
               </TouchableOpacity>
 
-              <TouchableOpacity>
-                <TextWithColor style={stylesDash.littleButton}>
+              <TouchableOpacity style={stylesDash.littleButtonBlue}>
+                <Image source={require('../../../assets/svgs-login/rutinas-button-img.png')} style={{ width: 15, height: 15 }}/>
+                <TextWithColor style={{ color: "#447aee", fontSize: 12 }}>
                   Rutinas
                 </TextWithColor>
               </TouchableOpacity>
 
-
              </View>
             </ScrollView>
 
-          <LastPosts infoUser={infoUser} textComponent={"Entrenadores Recientes"} imgText={require('../../../assets/svgs-login/entrenadores-img.png')}/>
+          <LastTrainers infoUser={infoUser} textComponent={"Últimos entrenadores"} imgText={require('../../../assets/svgs-login/thing-gym.png')} authToken={authToken}/>
 
         </View>
 

@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
+import { ColorsButton } from "../../../static/ColorsButton";
 export const stylePosts = StyleSheet.create({
     container: {
       paddingHorizontal: 12,
       height: "100%",
-      backgroundColor: "#121212",
+      backgroundColor: ColorsButton.colorBackgroundApp.color,
     },
     containerButtons: {
-      borderWidth: 1,
-      borderColor: "#6b5c7456",
+      backgroundColor: ColorsButton.colorBackgroundGray.color,
       borderRadius: 18,
       marginTop: 22,
       paddingVertical: 18,
@@ -52,16 +52,16 @@ export const stylePosts = StyleSheet.create({
       gap: 10,
     },
     input: {
-        backgroundColor: "#6b5c7456",
+        backgroundColor: "#e3e2e2",
         borderRadius: 10,
         padding: 10,
-        color: "white",
+        color: "#7b7b7b",
     },
     containerInput: {
         rowGap: 5,
     },
     containerContent: {
-        rowGap: 5,
+        rowGap: 8,
     },
     buttonSumbit: {
         backgroundColor: 'transparent',
@@ -82,10 +82,10 @@ export const stylePosts = StyleSheet.create({
       justifyContent: "center",
   },
     contentInput: {
-        backgroundColor: "#6b5c7456",
+        backgroundColor: "#e3e2e2",
         borderRadius: 10,
         padding: 10,
-        color: "white",
+        color: "#7b7b7b",
     },
     logoName: {
       flexDirection: "row",

@@ -1,4 +1,4 @@
-import { View, Image, TextInput, TouchableHighlight, Alert } from "react-native";
+import { View, Image, TextInput, TouchableHighlight, Alert, ScrollView } from "react-native";
 import { Link, useNavigate } from "react-router-native";
 import { verifyToken } from "../../../services/verifyToken/verifyToken.js";
 import { getToken } from "../../../services/asyncStorage/getAsyncStorage.js";
@@ -8,21 +8,25 @@ import { stylePosts } from "../../RegisterAdmins/AdminPosts/stylesPosts.js";
 import { TextWithColor } from "../../../components/brdText.jsx";
 import { registerPost } from "../../../services/adminStuff/registerPost.js"
 import LoadingMessage from "../../../components/loading-message.jsx";
-import { date } from "../../../config/config.breadriuss.js";
+import { date, PLACEHOLDER_PROFILE } from "../../../config/config.breadriuss.js";
 import ArrowBack from "../../../components/arrow-back.jsx";
 import { useParams } from "react-router-native";
 import { getPost } from "../../../services/adminManagePost/get-posts.js";
 import { updatePosts } from "../../../services/adminManagePost/update-post.js";
 import { deletePosts } from "../../../services/adminManagePost/delete-posts.js";
+import { ColorsButton } from "../../../static/ColorsButton.js";
 export default function UpdateAndDeletePosts() {
   const { setAuthToken, authToken, setInfoUser, infoUser } = useGlobalState();
   const navigate = useNavigate();
   // States of the component
   const [loading, setLoading] = useState(false);
   const [loadingPost, setLoadingPost] = useState(false);
+
+  // State of the post to update
   const [title_post, setTitlePost] = useState('');
   const [description_post, setDescriptionPost] = useState('');
   const [labels, setLabels] = useState('');
+  const [author, setAuthor] = useState('');
   const { id_post } = useParams();
 
 
@@ -35,7 +39,7 @@ export default function UpdateAndDeletePosts() {
 
       if (data) {
         Alert.alert("FACEGYM | Éxito", "Publicación actualizada con éxito");
-        navigate("/edit/posts");
+        navigate(-1);
         setDescriptionPost('');
         setTitlePost('');
         setLabels('');
@@ -51,7 +55,7 @@ export default function UpdateAndDeletePosts() {
 
     if (data) {
       Alert.alert("FACEGYM | Éxito", "Publicación eliminada con éxito");
-      navigate("/edit/posts");
+      navigate(-1);
     }
   }
 
@@ -63,12 +67,13 @@ export default function UpdateAndDeletePosts() {
     }
 
     if (data) {
-      setTitlePost(data.message[0].title_post)
-      setDescriptionPost(data.message[0].description_post)
-      setLabels(data.message[0].labels)
+      setTitlePost(data[0].title_post);
+      setDescriptionPost(data[0].description_post);
+      setLabels(data[0].labels);
+      setAuthor(data[0].name);
     }
-
   };
+
   const verify = async () => {
     const token = await getToken("AuthToken");
     setAuthToken(token);
@@ -93,18 +98,31 @@ export default function UpdateAndDeletePosts() {
   }, []);
 
   return (
+    <ScrollView>
+
     <View style={stylePosts.container}>
-      <ArrowBack stylePosts={stylePosts} path={"/edit/posts"} text={`Editando post`}/>
+      <ArrowBack stylePosts={stylePosts} path={-1} text={`Editando post`}/>
+
+      <View>
+        <TextWithColor style={{ textAlign: "center", color: ColorsButton.colorTextApp.color }} fontSize={13}>
+          Editando publicación con ID <TextWithColor color={ColorsButton.colorLink.color}>{id_post.split("-")[0]}</TextWithColor>
+        </TextWithColor>
+      </View>
 
       {loadingPost !== true ? <View style={stylePosts.containerButtons}>
-        <View>
-            <TextWithColor color={"#A198A6"} fontSize={12}>
-                {id_post}
-            </TextWithColor>
+        <View style={{ padding: 10, justifyContent: "center", alignItems: "center", gap: 10 }}>
+            <Image source={{ uri: PLACEHOLDER_PROFILE }} 
+            style={{ width: 50, height: 50, borderRadius: 100 }}
+            />
+
+            <View style={{ flexDirection: "row", gap: 2 }}>
+              <TextWithColor color={ColorsButton.colorTextApp.color}>{author}</TextWithColor>
+              <Image source={require("../../../../assets/svgs-login/info-verified.png")} style={{ width: 20, height: 20 }}/>
+            </View>
         </View>
 
         <View style={stylePosts.containerInput}>
-          <TextWithColor color={"#A198A6"} fontSize={12}>
+          <TextWithColor color={ColorsButton.colorTextApp.color} fontSize={14}>
             Titulo de la publicación
           </TextWithColor>
           <TextInput style={stylePosts.input} onChangeText={(text) => setTitlePost(text)}
@@ -113,7 +131,7 @@ export default function UpdateAndDeletePosts() {
         </View>
 
         <View style={stylePosts.containerContent}>
-          <TextWithColor color={"#A198A6"} fontSize={12}>
+          <TextWithColor color={ColorsButton.colorTextApp.color} fontSize={14}>
             Contenido de la publicación
           </TextWithColor>
           <TextInput style={stylePosts.contentInput} multiline={true} 
@@ -123,7 +141,7 @@ export default function UpdateAndDeletePosts() {
         </View>
 
         <View style={stylePosts.containerInput}>
-          <TextWithColor color={"#A198A6"} fontSize={12}>
+          <TextWithColor color={ColorsButton.colorTextApp.color} fontSize={14}>
             Palabras Clave
           </TextWithColor>
           <TextInput style={stylePosts.input} 
@@ -167,7 +185,7 @@ export default function UpdateAndDeletePosts() {
         : <LoadingMessage message={"Procesando..."}/>}
 
         <View style={stylePosts.containerInput}>
-          <TextWithColor color={"#A198A6"} fontSize={12} textAlign={"center"}>
+          <TextWithColor color={ColorsButton.colorTextApp.color} fontSize={12} textAlign={"center"}>
             Estás editando esta publicación como{" "}
             <TextWithColor color={"#9760B6"}>{infoUser?.email}</TextWithColor>
           </TextWithColor>
@@ -180,7 +198,7 @@ export default function UpdateAndDeletePosts() {
           <Image
             source={require("../../../../assets/svgs-login/lock-img.png")}
             style={stylePosts.newImage}
-          />
+            />
           <TextWithColor fontSize={12} color={"#A198A6"} textAlign={"center"}>
             Este apartado solo está disponible para administradores. Accesado
             como{" "}
@@ -191,5 +209,6 @@ export default function UpdateAndDeletePosts() {
       </View>
       
     </View>
+  </ScrollView>
   );
 }

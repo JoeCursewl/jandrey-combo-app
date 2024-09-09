@@ -1,3 +1,7 @@
 .arroz {
-    background-color: #e240409a;
+    background-color: #0808082c;
+}
+
+.test-color {
+    --test-color: rgb(151, 123, 229);
 }

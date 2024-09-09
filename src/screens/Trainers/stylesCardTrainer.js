@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native"
 import { ColorsButton } from "../../static/ColorsButton"
 
-export const stylesPosts = StyleSheet.create({
+export const stylesCardTrainer = StyleSheet.create({
     fontPost: {
         color: ColorsButton.colorEnergy.color,
         fontFamily: 'Poppins',
@@ -14,8 +14,6 @@ export const stylesPosts = StyleSheet.create({
     descriptionPost: {
         fontFamily: 'Poppins',
         width: "100%",
-        maxHeight: 40,
-        minHeight: 40,
         color: ColorsButton.colorTextApp.color,
     },
     imgPost: {
@@ -26,7 +24,8 @@ export const stylesPosts = StyleSheet.create({
         textAlign: "center",
         color: ColorsButton.colorEnergy.color,
         fontFamily: 'Poppins',
-        fontSize: 12
+        fontSize: 12,
+        width: 200
     },
     titlePosts: {
         fontFamily: 'Poppins',

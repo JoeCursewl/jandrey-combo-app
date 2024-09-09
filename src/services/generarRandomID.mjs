@@ -3,4 +3,4 @@ export function generateBinanceId() {
     const modificador = Math.floor(Math.random() * 100);
     const idUnico = timestamp + modificador;
     return idUnico
-  }
+}

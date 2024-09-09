@@ -23,9 +23,21 @@ export const ColorsButton = StyleSheet.create({
         color: '#626672'
     },
     colorWhiteApp: {
-        color: "#fefffe"
+        color: '#fefffe'
     },
     colorEnergy: {
-        color: "#dc5e25"
+        color: '#dc5e25'
+    },
+    colorError: {
+        color: '#cccdce'
+    },
+    colorBackgroundApp: {
+        color: '#fefffc'
+    },
+    colorBackgroundGray: {
+        color: '#f6f6f6'
+    },
+    colorPlaceholderInfo: {
+        color: "#e5e4e5"
     }
 })

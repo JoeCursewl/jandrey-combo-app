@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity, KeyboardAvoidingView } from "react-native";
+import { View, Image, TouchableOpacity, KeyboardAvoidingView, Alert } from "react-native";
 import { TextWithColor } from "../../components/brdText";
 
 // Hook useNavigate para manejar las rutas
@@ -14,7 +14,7 @@ import { useGlobalState } from "../../utils/zustand/useGlobalState";
 import { verifyLike } from "../../services/adminManagePost/verifiedLike";
 
 export default function CardPost({ item, styleCardPost, authToken, likes }) {
-    const { AuthTokenUser } = useGlobalState();
+    const { AuthTokenUser, infoUser } = useGlobalState();
 
     const [statusLike, setStatusLike] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -59,16 +59,32 @@ export default function CardPost({ item, styleCardPost, authToken, likes }) {
     <View key={item.uuid} style={styleCardPost.cardPost}>
 
       <View style={{ gap: 5 }}>
-        <View style={styleCardPost.cardPostTitle}>
-          <Image
-            source={require("../../../assets/svgs-login/date-img.png")}
-            style={styleCardPost.imgPost}
-            />
-          <TextWithColor
-            style={{ color: ColorsButton.colorLetter.color, fontSize: 14 }}
-          >
-            {item.name}
-          </TextWithColor>
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignContent: "center", alignItems: "center" }}>
+
+          <View style={{ flexDirection: "row", gap: 5 }}>
+            <Image
+              source={require("../../../assets/svgs-login/date-img.png")}
+              style={styleCardPost.imgPost}
+              />
+
+            <TextWithColor
+              style={{ color: ColorsButton.colorLetter.color, fontSize: 14 }}>
+              {item.name}
+            </TextWithColor>
+          </View>
+
+          <View>
+            <TouchableOpacity onPress={() => {
+              item._id_user === infoUser?._id ?
+              goToRoute(`/post/${item.uuid}`) 
+              :
+              Alert.alert("FACEGYM | Error", "No eres el autor del post. No puedes editarlo.")
+            }}>
+              <Image source={require("../../../assets/svgs-login/edit-comment-img.png")} style={{ width: 18, height: 18, marginTop: 5 }}/>
+            </TouchableOpacity>
+          </View>
+
         </View>
 
         <View style={styleCardPost.datePost}>
@@ -82,6 +98,7 @@ export default function CardPost({ item, styleCardPost, authToken, likes }) {
             publicado el {item.created_at}
           </TextWithColor>
         </View>
+
       </View>
 
       <View>

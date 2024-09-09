@@ -30,12 +30,16 @@ import { useNavigate, useParams } from "react-router-native";
 import CardPost from "./CardPost";
 import { useGlobalState } from "../../utils/zustand/useGlobalState";
 import { getPost } from "../../services/adminManagePost/get-posts";
+
+// Importamos el componente para manejar todos los comentarios
+import Comments from "./Comments";
+
 export default function GetPostId() {
   // objeto para navegar en las rutas
   const navigate = useNavigate();
 
   // Estado global para setear el token
-  const { setAuthToken, authToken } = useGlobalState()
+  const { setAuthToken, authToken, infoUser } = useGlobalState()
 
   // Se obtiene el ID del post desde el paramde URL en memoria
   const { id_post } = useParams()
@@ -47,7 +51,8 @@ export default function GetPostId() {
   const [loading, setLoading] = useState(false);
 
   const handleGetPostById = async () => {
-    const { error, data} = await getPost(authToken, setLoading, id_post)
+    const token = await getToken("AuthToken");
+    const { error, data} = await getPost(token, setLoading, id_post)
 
     if (error) {
       Alert.alert("FACEGYM | Error", error)
@@ -62,7 +67,25 @@ export default function GetPostId() {
     navigate(to);
   };
 
+  // Función para verificar si el usuario está autenticado
+  const verify = async () => {
+    const token = await getToken("AuthToken");
+    setAuthToken(token);
+    const { error, data } = await verifyToken(token);
 
+    if (error) {
+      Alert.alert("FACEGYM | Error GET POST BY ID", error.message);
+      navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    verify();
+  }, []);
+
+  useEffect(() => {
+    handleGetPostById();
+  }, [])
 
   return (
     <View style={stylesDash.container}>
@@ -79,24 +102,7 @@ export default function GetPostId() {
         
         </View>
 
-        <View style={{ backgroundColor: "#fefffc", padding: 15, gap: 10, borderBottomWidth: 1, borderBottomColor: "#ddd", }}>
-
-            <View style={{ gap: 5 }}>
-                <View style={{ flexDirection: "row", gap: 5 }}>
-                    <Image source={require("../../../assets/svgs-login/thing-gym.png")} style={{ width: 20, height: 20 }}/>
-                    <TextWithColor style={{ fontWeight: "bold", color: ColorsButton.colorLetter.color }}>Anthony</TextWithColor>
-                </View>
-
-                <View style={{ flexDirection: "row", gap: 5, backgroundColor: "#f0f0f0", paddingVertical: 3, paddingHorizontal: 6, borderRadius: 20, width: 128, alignContent: "center", alignItems: "center", justifyContent: "center" }}>
-                    <Image source={require("../../../assets/svgs-login/date-post-.png")} style={{ width: 10, height: 10 }}/>
-                    <TextWithColor style={{ color: ColorsButton.colorLetter.color, fontSize: 8 }}>publicado el 28/7/2024</TextWithColor>
-                </View>
-            </View>
-
-            <View style={{ backgroundColor: "#f0f0f0", padding: 10, borderRadius: 20 }}>
-                <TextWithColor style={{ color: ColorsButton.colorLetter.color,fontSize: 13 }}>Esta es una simulación de un comentario que alguien haría, en este caso en este post.</TextWithColor>
-            </View>
-        </View>
+          <Comments post_id={id_post} infoUser={infoUser} />
 
       </View>
     </View>

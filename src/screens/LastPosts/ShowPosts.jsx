@@ -101,13 +101,15 @@ export default function ShowPosts() {
               flexDirection: "row",
               gap: 5,
               alignItems: "center",
-              justifyContent: "flex-start",
+              justifyContent: "space-between",
             }}
           >
+
             <Image
               source={require("../../../assets/svgs-login/thing-gym.png")}
               style={{ width: 20, height: 20 }}
             />
+
             <TextWithColor
               style={{
                 fontFamily: "Poppins",
@@ -117,8 +119,12 @@ export default function ShowPosts() {
             >
               Novedades | Para ti
             </TextWithColor>
-          </View>
 
+            <TouchableOpacity onPress={() => goToRoute(-1)}>
+              <Image source={require("../../../assets/svgs-login/post-back-img.png")} style={{ width: 25, height: 25 }}/>
+            </TouchableOpacity>
+
+          </View>
  
         </View>
         

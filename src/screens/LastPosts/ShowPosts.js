@@ -6,7 +6,8 @@ export const styleCardPost = StyleSheet.create({
         padding: 15,
         borderBottomWidth: 1,
         borderBottomColor: "#6b5c7456",
-        gap: 10
+        gap: 10,
+        minHeight: 200
     },
     imgPost: {
         width: 22,
@@ -81,6 +82,6 @@ export const styleCardPost = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-start",
-        gap: 2
+        gap: 4
     }
 })
