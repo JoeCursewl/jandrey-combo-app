@@ -36,6 +36,8 @@ import {
     const [schedule_trainer, setScheduleTrainer] = useState("");
     const [info_trainer, setInfoTrainer] = useState('');
     const [status_trainer, setSelectedLanguage] = useState();
+    const [phone, setPhone] = useState('');
+    const [areacode, setAreaCode] = useState('');
     const { id_trainer } = useParams();
   
     // Functions
@@ -44,7 +46,7 @@ import {
     };
 
     const handleUpdateTrainer = async () => {
-        const { error, trainer } = await updateTrainer(authToken, setLoading, name_trainer, packages_trainer, schedule_trainer, info_trainer, status_trainer, id_trainer);
+        const { error, trainer } = await updateTrainer(authToken, setLoading, name_trainer, packages_trainer, schedule_trainer, info_trainer, status_trainer, id_trainer, phone, areacode);
 
         if (error) {
             Alert.alert("FACEGYM | Error", error);
@@ -57,7 +59,7 @@ import {
             setScheduleTrainer("");
             setInfoTrainer("");
             setSelectedLanguage("");
-            navigate("/edit/trainers");
+            navigate("/trainers");
         }
     }
 
@@ -71,7 +73,7 @@ import {
 
         if (trainer) {
             Alert.alert("FACEGYM | Éxito", trainer);
-            navigate("/edit/trainers");
+            navigate("/trainers");
         }
     }
 
@@ -88,6 +90,8 @@ import {
             setScheduleTrainer(trainer.schedule_trainer);
             setSelectedLanguage(trainer.status_trainer);
             setInfoTrainer(trainer.info_trainer);
+            setPhone(trainer.phone_trainer);
+            setAreaCode(trainer.area_code);
         }
     }
   
@@ -130,7 +134,7 @@ import {
                   style={stylePosts.newImage}
                 />
                 <TextWithColor color={"#EBD3F9"} fontSize={12}>
-                  ID {infoUser?._id}
+                  ID (USUARIO ACTUAL) {infoUser?._id}
                 </TextWithColor>
               </View>
   
@@ -187,7 +191,7 @@ import {
         </Modal>
   
         <View style={stylePosts.container}>
-          <ArrowBack stylePosts={stylePosts} packages={"-"} loading={loading} text={"FORCEGYM | Editando"} image={require("../../../../assets/svgs-login/entrenadores-img.png")} path={"/edit/trainers"}/>
+          <ArrowBack stylePosts={stylePosts} packages={"-"} loading={loading} text={"FORCEGYM | Editando"} image={require("../../../../assets/svgs-login/entrenadores-img.png")} path={-1}/>
   
           <KeyboardAvoidingView>
             <View style={stylePosts.containerButtons}>
@@ -199,7 +203,7 @@ import {
                       style={stylePosts.newImage}
                     />
                     <TextWithColor color={"#C292DE"} fontSize={12}>
-                      ID {infoUser?._id}
+                      ID (USUARIO ACTUAL) {infoUser?._id}
                     </TextWithColor>
                   </View>
   
@@ -254,6 +258,28 @@ import {
                   style={stylePosts.input}
                   onChangeText={(text) => setInfoTrainer(text)}
                   value={info_trainer}
+                />
+              </View>
+
+              <View style={stylePosts.containerInput}>
+                <TextWithColor color={"#A198A6"} fontSize={12}>
+                  Número del Entrenador
+                </TextWithColor>
+                <TextInput
+                  style={stylePosts.input}
+                  onChangeText={(text) => setPhone(text)}
+                  value={phone}
+                />
+              </View>
+
+              <View style={stylePosts.containerInput}>
+                <TextWithColor color={"#A198A6"} fontSize={12}>
+                  Código de Area
+                </TextWithColor>
+                <TextInput
+                  style={stylePosts.input}
+                  onChangeText={(text) => setAreaCode(text)}
+                  value={areacode}
                 />
               </View>
   

@@ -8,6 +8,8 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Modal,
+  TouchableOpacity,
+  TouchableOpacityBase,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { Link, useNavigate } from "react-router-native";
@@ -33,6 +35,8 @@ export default function RegisterTrainers() {
   const [schedule_trainer, setScheduleTrainer] = useState("");
   const [info_trainer, setInfoTrainer] = useState('');
   const [status_trainer, setSelectedLanguage] = useState();
+  const [phone, setPhone] = useState('');
+  const [areacode, setAreaCode] = useState('');
 
   // Functions
   const showInfoTrainer = () => {
@@ -40,7 +44,7 @@ export default function RegisterTrainers() {
   };
 
   const handleRegisterTrainer = async () => {
-    const { data, error } = await registerTrainers(authToken, setLoading, infoUser?._id, name_trainer, packages_trainer, schedule_trainer, info_trainer, status_trainer);
+    const { data, error } = await registerTrainers(authToken, setLoading, infoUser?._id, name_trainer, packages_trainer, schedule_trainer, info_trainer, status_trainer, phone, areacode);
     
     if (error) {
       Alert.alert("FACEGYM | Error", error);
@@ -51,7 +55,7 @@ export default function RegisterTrainers() {
         "FACEGYM | Éxito",
         `Entrenador ${name_trainer} registrado con éxito`
       );
-      navigate("/register");
+      navigate("/trainers");
     }
   };
 
@@ -149,12 +153,12 @@ export default function RegisterTrainers() {
 
       <View style={stylePosts.container}>
         <View style={stylePosts.containerArrow}>
-          <Link to={"/register"}>
+          <TouchableOpacity onPress={() => navigate(-1)}>
             <Image
               source={require("../../../../assets/svgs-login/arrow-back-img.png")}
               style={stylePosts.arrowBack}
             />
-          </Link>
+          </TouchableOpacity>
 
           <Image
             source={require("../../../../assets/svgs-login/entrenadores-img.png")}
@@ -232,6 +236,26 @@ export default function RegisterTrainers() {
 
             <View style={stylePosts.containerInput}>
               <TextWithColor color={"#A198A6"} fontSize={12}>
+                Número de teléfono del Entrandor
+              </TextWithColor>
+              <TextInput
+                style={stylePosts.input}
+                onChangeText={(text) => setPhone(text)}
+              />
+            </View>
+
+            <View style={stylePosts.containerInput}>
+              <TextWithColor color={"#A198A6"} fontSize={12}>
+                Código de Area (Telefonico) ejemp. +58
+              </TextWithColor>
+              <TextInput
+                style={stylePosts.input}
+                onChangeText={(text) => setAreaCode(text)}
+              />
+            </View>
+
+            <View style={stylePosts.containerInput}>
+              <TextWithColor color={"#A198A6"} fontSize={12}>
                 Estado del Entrenador
               </TextWithColor>
 
@@ -257,7 +281,7 @@ export default function RegisterTrainers() {
                 activeOpacity={0.6}
               >
                 <TextWithColor color={"#C27BEA"} fontSize={15}>
-                  Publicar
+                  Registrar
                 </TextWithColor>
               </TouchableHighlight>
             ) : (
@@ -270,7 +294,7 @@ export default function RegisterTrainers() {
                 fontSize={12}
                 textAlign={"center"}
               >
-                Estás registrando esta publicación como{" "}
+                Estás registrando este entrandor como{" "}
                 <TextWithColor color={"#9760B6"}>
                   {infoUser?.email}
                 </TextWithColor>

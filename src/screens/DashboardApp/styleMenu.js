@@ -25,18 +25,18 @@ export const styleMenu = StyleSheet.create({
     contMenu: {
         paddingHorizontal: 25,
         paddingTop: 8,
+        width: "100%",
     }, 
     link: {
         flexDirection: "row",
         gap: 20,
         alignItems: "center",
         justifyContent: "center",
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        borderRadius: 100,
         width: "100%",
-        paddingVertical: 15,
-        paddingHorizontal: 15,
-        borderRadius: 10,
-        borderBottomWidth: 1,
-        borderColor: "#6b5c7456",
+        backgroundColor: "#e5e4e5",
     },
     apartados: {
         flexDirection: "row",

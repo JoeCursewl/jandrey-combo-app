@@ -40,7 +40,7 @@ export const PLACEHOLDERS_INFO = {
 }
 
 // URL DE LA API DE LA DB
-export const API_URL = 'https://forcegym.breadriuss.store/';
+export const API_URL = 'https://api-jandrey-combo-production.up.railway.app/';
 export const DEFAULT_USER_BRD = 'D'
 
 // URL PLACEHOLDER PROFILE

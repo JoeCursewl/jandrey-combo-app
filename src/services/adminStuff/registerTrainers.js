@@ -1,16 +1,17 @@
 import { date } from '../../config/config.breadriuss.js' 
 import { generateBinanceId } from '../generarRandomID.mjs';
 import { API_URL } from '../../config/config.breadriuss.js';
-export const registerTrainers = async (authToken, setLoading, _id_user, name_trainer, packages_trainer, schedule_trainer, info_trainer, status_trainer) => {
+export const registerTrainers = async (authToken, setLoading, _id_user, name_trainer, packages_trainer, schedule_trainer, info_trainer, status_trainer, phone, areacode) => {
     setLoading(true)
     try {
-        if (name_trainer === '' || packages_trainer === '' || schedule_trainer === '' || info_trainer === '' || status_trainer === '') {
+        if (name_trainer === '' || packages_trainer === '' || schedule_trainer === '' || info_trainer === '' || status_trainer === '' || phone === '' || areacode === '') {
             throw new Error('Todos los campos son requeridos!')
         }
 
-        if (name_trainer.length > 100 || packages_trainer.length > 400 || schedule_trainer.length > 255 || info_trainer.length > 255 || status_trainer.length > 20) {
+        if (name_trainer.length > 100 || packages_trainer.length > 400 || schedule_trainer.length > 255 || info_trainer.length > 255 || status_trainer.length > 20 || phone.length > 25 || areacode.length > 10) {
             throw new Error('Ingresa un valor válido para cada campo!')
         }
+
         const created_at = date.toLocaleTimeString('es-ES') + ' ' + date.toLocaleDateString('es-ES')
         const _id_trainer = generateBinanceId()
         
@@ -29,7 +30,9 @@ export const registerTrainers = async (authToken, setLoading, _id_user, name_tra
                 info_trainer: info_trainer.trim(), 
                 status_trainer: status_trainer.trim(),
                 created_at: created_at,
-                updated_at: created_at
+                updated_at: created_at,
+                phone: phone.trim(),
+                areacode: areacode.trim()
             })
         })
 

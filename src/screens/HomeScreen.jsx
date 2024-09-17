@@ -27,6 +27,7 @@ import { MenuPDF } from "./DashboardApp/MenuPdf.jsx";
 import ShowPosts from "./LastPosts/ShowPosts.jsx";
 import GetPostId from "./LastPosts/GetPostId.jsx";
 import ShowTrainerDetail from "./Trainers/ShowTrainerDetail.jsx";
+import ShowTrainersSaved from "./Trainers/ShowTrainerSaved.jsx";
 
 export default function AllApp() {
   return (
@@ -77,6 +78,7 @@ export default function AllApp() {
         <Route path="/edit/trainers" element={<UpdateTrainers />} />
         <Route path="/trainer/:id_trainer" element={<UpdateAndDeleteTrainers />} />
         <Route path="/trainer/details/:id_trainer" element={<ShowTrainerDetail />} />
+        <Route path="/trainer/saved" element={<ShowTrainersSaved />} />
 
         {/* Se encarga de mostrar y editar la información de contacto. */}
         <Route path="/edit/information" element={<UpdateInformation />} />

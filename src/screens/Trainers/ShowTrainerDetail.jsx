@@ -7,6 +7,7 @@ import {
   ScrollView,
   Modal,
   Linking,
+  FlatListComponent,
 } from "react-native";
 import { TextWithColor } from "../../components/brdText";
 
@@ -47,16 +48,25 @@ import PlaceholderLoading from "../../components/placeholder-loading";
 
 // Componente para contactar al entrenador
 import PressInfo from "./components/PressInfo";
+import { stylesModalToEdit } from "./stylesModalToEdit";
+
+import { deleteTrainer } from "../../services/adminManageTrainers/delete-trainer";
+import { saveTrainer } from "./saveTrainer";
+import { verifyIfSaved } from "./verifyIfSaved";
 
 export default function ShowTrainerDetail() {
   // Hook useGlobalState para manejar el estado global
-  const { authToken, setAuthToken, infoUser } = useGlobalState();
-
+  const { setAuthToken, infoUser } = useGlobalState();
+  
   // Estado de carga de los detalles
   const [loading, setLoading] = useState(false);
-
+  
   // Estado para almanecar los datos del entrenador
   const [trainer, setTrainer] = useState({});
+  const { id_trainer } = useParams();
+
+  // Estado del modal para editar entrenadores
+  const [showModal, setShowModal] = useState(false);
 
   const verify = async () => {
     const token = await getToken("AuthToken");
@@ -102,6 +112,28 @@ export default function ShowTrainerDetail() {
     verify();
   }, []);
 
+  const handleOpenModal = () => {
+    setShowModal(!showModal);
+  }
+
+  const handleVerifyTrainer = async () => {
+    const token = await getToken("AuthToken");
+    const { error, state } = await verifyIfSaved(id_trainer, token, setLoading);
+
+    if (error) {
+      Alert.alert("FACEGYM | Error obteniendo estado de verificación", error);
+    }
+
+    if (state === true) {
+        setIsSavedTrainer(true);
+    } else {
+        setIsSavedTrainer(false);
+    }
+  }
+
+  useEffect(() => {
+    handleVerifyTrainer();
+  }, [])
 
   const isVerified = trainer?.status_trainer === "INA" ? require("../../../assets/svgs-login/info-unverified.png") : require("../../../assets/svgs-login/info-verified.png");
 
@@ -128,14 +160,96 @@ export default function ShowTrainerDetail() {
     navigate(to);
   };
 
-  const { id_trainer } = useParams();
+  const handleDeleteTrainerApi = async () => {
+    const token = await getToken("AuthToken");
+    const { error, trainer } = await deleteTrainer(token, setLoading, id_trainer);
+
+    if (error) {
+        Alert.alert("FACEGYM | Error", error);
+    }
+
+    if (trainer) {
+        Alert.alert("FACEGYM | Éxito", trainer);
+        navigate("/trainers");
+    }
+}
+
+
+  const handleDeleteTrainer = () => {
+    Alert.alert(
+      "FORCEGYM | Eliminar Entrenador",
+      "¿Estas seguro de eliminar este Entrenador? Esta acción es irreversible.",
+      [
+        {
+          text: "Cancelar",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "Eliminar",
+          onPress: async () => {
+            await handleDeleteTrainerApi();
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+
+  const[isSavedTrainer, setIsSavedTrainer] = useState(false);
+
+  const handleSaveTrainer = async () => {
+    setIsSavedTrainer(!isSavedTrainer);
+    const authToken = await getToken('AuthToken');
+
+    const { error, data } = await saveTrainer(id_trainer, infoUser?._id, authToken, setLoading);
+
+    if (error) {
+      Alert.alert("FACEGYM | Error", error);
+    }
+  }
+
+  
+
 
   return (
     <>
+      <Modal visible={showModal} transparent>
+        
+          <View style={stylesModalToEdit.containerModal}>
+            <View style={stylesModalToEdit.modalContent}>
+
+              <View style={stylesModalToEdit.containerInfo}> 
+                <TextWithColor style={stylesModalToEdit.titleModal}>{trainer?.name_trainer}</TextWithColor>
+                <TextWithColor color={"#a893bb"} fontSize={12} textAlign={"center"}>¿Que acción deseas realizar con {trainer?.name_trainer}?</TextWithColor>
+              </View>
+
+              <View style={stylesModalToEdit.containerButtons}>
+
+                <TouchableOpacity style={stylesModalToEdit.editButton} onPress={() => {goToRoute(`/trainer/${trainer?._id_trainer}`)}}>
+                  <TextWithColor>Editar</TextWithColor>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={stylesModalToEdit.deleteButton} onPress={handleDeleteTrainer}>
+                  <TextWithColor>Eliminar</TextWithColor>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={stylesModalToEdit.deleteButton} onPress={handleOpenModal}>
+                  <TextWithColor>Cancelar</TextWithColor>
+                </TouchableOpacity>
+
+              </View>
+
+            </View>
+          </View>
+
+      </Modal>
+
       <KeyboardAvoidingView behavior="height">
         <ScrollView style={stylesDetailTrainer.container}>
           <View style={stylesDetailTrainer.mainContainer}>
             <View style={stylesDetailTrainer.topContainer}>
+
               <View>
                 <TouchableOpacity onPress={() => goToRoute(-1)}>
                   <Image
@@ -145,12 +259,14 @@ export default function ShowTrainerDetail() {
                 </TouchableOpacity>
               </View>
 
-              <View>
-                <Image
-                  source={{ uri: PLACEHOLDER_PROFILE }}
-                  style={{ width: 28, height: 28, borderRadius: 100 }}
-                />
-              </View>
+              <TouchableOpacity onPress={() => infoUser?._role === 'A'  ? handleOpenModal() : null}>
+                  <View>
+                    <Image
+                      source={{ uri: PLACEHOLDER_PROFILE }}
+                      style={{ width: 28, height: 28, borderRadius: 100 }}
+                      />
+                  </View>
+                </TouchableOpacity>
             </View>
 
             <View style={stylesDetailTrainer.profileTrainer}>
@@ -317,9 +433,9 @@ export default function ShowTrainerDetail() {
               <PlaceholderLoading 
               size={PLACEHOLDERS_INFO.moreSmall}/> : 
               <PressInfo 
-              text={"Guardar"} 
-              onPress={() => {}} 
-              imgPress={require("../../../assets/svgs-login/something-to-save.png")} 
+              text={isSavedTrainer ? "Guardado" : "Guardar"} 
+              onPress={() => {handleSaveTrainer()}} 
+              imgPress={isSavedTrainer ? require("../../../assets/svgs-login/something-to-save-as.png") : require("../../../assets/svgs-login/something-to-save.png")} 
               />}
 
             </View>

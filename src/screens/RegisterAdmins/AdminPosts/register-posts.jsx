@@ -1,4 +1,4 @@
-import { View, Image, TextInput, TouchableHighlight, Alert } from "react-native";
+import { View, Image, TextInput, TouchableOpacity, Alert, TouchableHighlight } from "react-native";
 import { Link, useNavigate } from "react-router-native";
 import { verifyToken } from "../../../services/verifyToken/verifyToken";
 import { getToken } from "../../../services/asyncStorage/getAsyncStorage";
@@ -34,6 +34,10 @@ export default function RegisterPosts() {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
 
 
   const verify = async () => {
@@ -58,12 +62,12 @@ export default function RegisterPosts() {
   return (
     <View style={stylePosts.container}>
       <View style={stylePosts.containerArrow}>
-        <Link to={"/register"}>
+        <TouchableOpacity onPress={handleBack}>
           <Image
             source={require("../../../../assets/svgs-login/arrow-back-img.png")}
             style={stylePosts.arrowBack}
           />
-        </Link>
+        </TouchableOpacity>
 
         <Image source={require("../../../../assets/svgs-login/posts-img.png")} style={stylePosts.newImage}/>
 

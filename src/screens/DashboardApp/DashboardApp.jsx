@@ -109,17 +109,31 @@ export default function DashboardApp() {
           </View>
         </Shadow>
 
-          <View style={{ alignItems: "center", justifyContent: 'center', }}>
-            
-            <TouchableOpacity onPress={() => {
-              goToRoute('/posts');
-            }}>
-              <TextWithColor style={stylesDash.littleButton}>
-                Ver novedades
-              </TextWithColor>
-            </TouchableOpacity>
+        <ScrollView horizontal={true} style={{ width: 'auto' }}>
+            <View style={{ width: 'auto', flexDirection: 'row', gap: 10, paddingVertical: 10 }}>
+  
+              <TouchableOpacity onPress={() => {
+                goToRoute('/posts')
+              }}
+              style={stylesDash.littleButton}>
+                <Image source={require('../../../assets/svgs-login/entrenadores-button-img.png')} style={{ width: 15, height: 15 }}/>
+                  <TextWithColor style={{ color: ColorsButton.colorEnergy.color, fontSize: 12 }}>
+                    Ver novedades
+                  </TextWithColor>
+              </TouchableOpacity>
 
-          </View>
+              <TouchableOpacity style={stylesDash.littleButtonPurple} onPress={() => {
+                infoUser?._role === 'A' ? goToRoute('/register/new-post') : 
+                Alert.alert("FACEGYM | Error", "Debes ser administrador para publicar.")
+              }}>
+                <Image source={require('../../../assets/svgs-login/guardados-button-img.png')} style={{ width: 15, height: 15 }}/>
+                <TextWithColor style={{ color: "#cb7df2", fontSize: 12 }}>
+                  + Nuevo Post
+                </TextWithColor>
+              </TouchableOpacity>
+
+             </View>
+            </ScrollView>
 
           <LastPosts infoUser={infoUser} textComponent={"Últimas publicaciones"} imgText={require('../../../assets/svgs-login/last-posts-img.png')}/>
 
@@ -162,17 +176,10 @@ export default function DashboardApp() {
                   </TextWithColor>
               </TouchableOpacity>
 
-              <TouchableOpacity style={stylesDash.littleButtonPurple}>
+              <TouchableOpacity style={stylesDash.littleButtonPurple} onPress={() => goToRoute('/trainer/saved')}>
                 <Image source={require('../../../assets/svgs-login/guardados-button-img.png')} style={{ width: 15, height: 15 }}/>
                 <TextWithColor style={{ color: "#cb7df2", fontSize: 12 }}>
                   Guardados
-                </TextWithColor>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={stylesDash.littleButtonBlue}>
-                <Image source={require('../../../assets/svgs-login/rutinas-button-img.png')} style={{ width: 15, height: 15 }}/>
-                <TextWithColor style={{ color: "#447aee", fontSize: 12 }}>
-                  Rutinas
                 </TextWithColor>
               </TouchableOpacity>
 
