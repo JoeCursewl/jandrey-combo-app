@@ -227,7 +227,7 @@ export default function CommentCard({ ColorsButton, username, created_at, commen
 
         <View style={{ backgroundColor: "#f0f0f0", padding: 10, borderRadius: 20, gap: 10, width: "90%", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
           <TextInput value={comment} onChangeText={(e) => verifyTextComment(e)} 
-            style={{ borderColor: "#a3a3a3", borderWidth: 0.8, padding: 8, borderRadius: 20, width: 250, fontFamily: "Poppins" }}
+            style={{ borderColor: "#a3a3a3", borderWidth: 0.8, padding: 8, borderRadius: 20, width: 250 }}
             />
 
             {disable ?

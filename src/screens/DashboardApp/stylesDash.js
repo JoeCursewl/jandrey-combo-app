@@ -66,7 +66,7 @@ const stylesDash = StyleSheet.create({
     height: 20,
   },
   littleButton: {
-    fontFamily: "Poppins",
+    //fontFamily: "Poppins-Regular",
     fontSize: 12,
     color: ColorsButton.colorEnergy.color,
     borderWidth: 0.5,
@@ -82,7 +82,7 @@ const stylesDash = StyleSheet.create({
     gap: 4,
   },
   littleButtonPurple: {
-    fontFamily: "Poppins",
+    //fontFamily: "Poppins-Regular",
     fontSize: 12,
     color: "#cb7df2",
     borderWidth: 0.5,
@@ -98,7 +98,7 @@ const stylesDash = StyleSheet.create({
     gap: 4,
   },
   littleButtonBlue: {
-    fontFamily: "Poppins",
+    //fontFamily: "Poppins",
     fontSize: 12,
     color: "#447aee",
     borderWidth: 0.5,

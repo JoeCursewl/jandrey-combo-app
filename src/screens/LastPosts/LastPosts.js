@@ -4,7 +4,7 @@ import { ColorsButton } from "../../static/ColorsButton"
 export const stylesPosts = StyleSheet.create({
     fontPost: {
         color: ColorsButton.colorEnergy.color,
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         width: 100
     },
     containerPost: {
@@ -12,7 +12,7 @@ export const stylesPosts = StyleSheet.create({
         gap: 10,
     },
     descriptionPost: {
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         width: "100%",
         maxHeight: 40,
         minHeight: 40,
@@ -25,11 +25,11 @@ export const stylesPosts = StyleSheet.create({
     morePost: {
         textAlign: "center",
         color: ColorsButton.colorEnergy.color,
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         fontSize: 12
     },
     titlePosts: {
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         fontSize: 14,
         color: ColorsButton.colorTextApp.color
     },

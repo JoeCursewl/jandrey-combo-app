@@ -310,7 +310,7 @@ export default function ShowPostDetail({
                   fontSize: 12,
                   backgroundColor: "#f0f0f0",
                   borderRadius: 15,
-                  fontFamily: "Poppins",
+                  //fontFamily: "Poppins",
                   paddingHorizontal: 10,
                   width: 260,
                 }}

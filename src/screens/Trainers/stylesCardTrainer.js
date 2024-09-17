@@ -4,7 +4,7 @@ import { ColorsButton } from "../../static/ColorsButton"
 export const stylesCardTrainer = StyleSheet.create({
     fontPost: {
         color: ColorsButton.colorEnergy.color,
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         width: 100
     },
     containerPost: {
@@ -12,7 +12,7 @@ export const stylesCardTrainer = StyleSheet.create({
         gap: 10,
     },
     descriptionPost: {
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         width: "100%",
         color: ColorsButton.colorTextApp.color,
     },
@@ -23,12 +23,12 @@ export const stylesCardTrainer = StyleSheet.create({
     morePost: {
         textAlign: "center",
         color: ColorsButton.colorEnergy.color,
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         fontSize: 12,
         width: 200
     },
     titlePosts: {
-        fontFamily: 'Poppins',
+        //fontFamily: 'Poppins',
         fontSize: 14,
         color: ColorsButton.colorTextApp.color
     },

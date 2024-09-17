@@ -114,7 +114,7 @@ export default function ShowTrainersSaved() {
 
             <TextWithColor
               style={{
-                fontFamily: "Poppins",
+                //fontFamily: "Poppins",
                 fontSize: 15,
                 color: ColorsButton.colorTextApp.color,
               }}

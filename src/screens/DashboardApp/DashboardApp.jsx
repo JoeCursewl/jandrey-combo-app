@@ -61,17 +61,6 @@ export default function DashboardApp() {
     navigate(to);
   }
 
-  const loadFonts = async () => {
-    await loadAsync({
-      Poppins: require('../../../assets/fonts/Poppins-Regular.ttf'),
-    }); 
-  }
-
-  // Función para obtener custom fonts de los assets
-  const [loadedFonts] = useFonts(async () => {
-    loadFonts()
-  });
-
 
   return (
  <ScrollView>
@@ -82,14 +71,14 @@ export default function DashboardApp() {
       }}>
 
         <View style={stylesDash.dashContainer}>
-          <TextWithColor style={{ fontFamily: 'Poppins', fontSize: 15, color: ColorsButton.colorWhiteApp.color }}>Bienvenido <TextWithColor color={ColorsButton.colorEnergy.color}>{infoUser?.name}</TextWithColor>, aquí puedes ver novedades, entranadores e información de relevancia.</TextWithColor>
+          <TextWithColor style={{ fontFamily: '', fontSize: 15, color: ColorsButton.colorWhiteApp.color }}>Bienvenido <TextWithColor color={ColorsButton.colorEnergy.color}>{infoUser?.name}</TextWithColor>, aquí puedes ver novedades, entranadores e información de relevancia.</TextWithColor>
         </View>
 
         <View style={{ backgroundColor: "#fefffc", borderTopLeftRadius: 30, borderTopRightRadius: 30, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, padding: 20, gap: 10 }}>
           
           <View style={{ flexDirection: "row", gap: 5, alignItems: "center", justifyContent: "flex-start" }}>
             <Image source={require('../../../assets/svgs-login/thing-gym.png')} style={{ width: 20, height: 20 }}/>
-            <TextWithColor style={{ fontFamily: 'Poppins', fontSize: 15, color: ColorsButton.colorTextApp.color }}>Novedades | Para ti</TextWithColor>
+            <TextWithColor style={{ fontFamily: '', fontSize: 15, color: ColorsButton.colorTextApp.color }}>Novedades | Para ti</TextWithColor>
           </View>
  
        <Shadow style={{ width: "100%" }} distance={8} startColor={ColorsButton.colorWhiteApp.color}>
@@ -143,7 +132,7 @@ export default function DashboardApp() {
           
           <View style={{ flexDirection: "row", gap: 5, alignItems: "center", justifyContent: "flex-start" }}>
             <Image source={require('../../../assets/svgs-login/cat-trainers.png')} style={{ width: 20, height: 20 }}/>
-            <TextWithColor style={{ fontFamily: 'Poppins', fontSize: 15, color: ColorsButton.colorTextApp.color }}>Entrenadores | Personaliza & guarda entrenadores</TextWithColor>
+            <TextWithColor style={{ fontFamily: '', fontSize: 15, color: ColorsButton.colorTextApp.color }}>Entrenadores | Personaliza & guarda entrenadores</TextWithColor>
           </View>
  
        <Shadow style={{ width: "100%" }} distance={8} startColor={ColorsButton.colorWhiteApp.color}>
