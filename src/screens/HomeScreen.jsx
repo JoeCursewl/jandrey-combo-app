@@ -103,8 +103,8 @@ export default function AllApp() {
 const styles = StyleSheet.create({
   container: {
     minHeight: 100,
-    marginTop: Constants.statusBarHeight,
-    backgroundColor: "#000"
+    // marginTop: Constants.statusBarHeight,
+    backgroundColor: "#fff"
   },
   text: {
     fontSize: 14,
