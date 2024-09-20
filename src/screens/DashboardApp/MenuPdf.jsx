@@ -27,7 +27,7 @@ export const MenuPDF = () => {
 
   const verify = async () => {
     const token = await getToken('AuthToken');
-    setAuthToken(token);
+    setAuthToken(token)
     const { error, data } = await verifyToken(token);
 
     if (error) {
@@ -37,9 +37,12 @@ export const MenuPDF = () => {
 
     if (data) {
       setInfoUser(data.message);
-      setAuthToken(token);
     }
   }
+
+  useEffect(() => {
+    getTrainers();
+  }, [])
 
   const getTrainers = async () => {
     const { error, data } = await getLastTrainers(
@@ -103,10 +106,6 @@ export const MenuPDF = () => {
     verify();
   }, [])
 
-  useEffect(() => {
-      getTrainers();
-  }, [])
-
     return (
         <View style={stylesDash.container}>
         <ImageBackground>
@@ -121,7 +120,7 @@ export const MenuPDF = () => {
             <TouchableHighlight onPress={loading !== true ? createPDF : null} style={styleMenu.link}>
                 <View style={styleMenu.apartados}>
                     <Image source={require("../../../assets/svgs-login/entrenadores-img.png")} style={styleMenu.img}/>
-                    <TextWithColor color={"#E5E3E4"} fontSize={15}>Generar Entrenadores {loading === true ? <ActivityIndicator /> : null}</TextWithColor>
+                    {loading === true ? <ActivityIndicator /> : <TextWithColor color={"#E5E3E4"} fontSize={15}>Generar Entrenadores {loading === true ? <ActivityIndicator /> : null}</TextWithColor>}
                 </View>
             </TouchableHighlight>
 

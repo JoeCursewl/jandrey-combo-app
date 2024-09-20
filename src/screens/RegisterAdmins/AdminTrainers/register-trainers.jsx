@@ -226,7 +226,7 @@ export default function RegisterTrainers() {
 
             <View style={stylePosts.containerInput}>
               <TextWithColor color={"#A198A6"} fontSize={12}>
-                Información del Entrenador
+                Email del Entrenador
               </TextWithColor>
               <TextInput
                 style={stylePosts.input}

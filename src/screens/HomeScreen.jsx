@@ -44,7 +44,6 @@ export default function AllApp() {
         <Route path="/login" element={<ScreenLogin />}/>
         <Route path="/login-admin" element={<ScreenRegister />}/>
         
-
         {/* Rutas para que el administrador pueda registrar. */}
         <Route path="/register" element={<RouterAdmin />} />
 
